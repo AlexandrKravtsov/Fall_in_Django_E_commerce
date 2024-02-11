@@ -121,3 +121,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files (not for production)
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# the key that will be used the cart in session
+CART_SESSION_ID = 'cart'
