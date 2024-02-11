@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include('shop.urls', namespace='shop')),
 ]
 
+# Serve static files during development (not for production!)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
