@@ -121,9 +121,17 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0`']
+#
+# INTERNAL_IPS = [
+#         '127.0.0.1',
+# ]
+
 # Media files (not for production)
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # the key that will be used the cart in session
 CART_SESSION_ID = 'cart'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
