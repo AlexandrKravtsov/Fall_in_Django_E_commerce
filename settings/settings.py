@@ -29,7 +29,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+        #
         'account.apps.AccountConfig',
+        #
         'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
         'shop.apps.ShopConfig',
         'cart.apps.CartConfig',
         'orders.apps.OrdersConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -136,3 +139,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 CART_SESSION_ID = 'cart'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Login
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
