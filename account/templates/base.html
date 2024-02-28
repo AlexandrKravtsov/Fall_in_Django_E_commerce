@@ -15,6 +15,7 @@
     <span class = "logo">MyDronesShop</span>
 
     {% if request.user.is_authenticated %}
+        {#        #}
         <ul class = "menu">
             <li {% if section == "dashboard" %}class="selected"{% endif %}>
                 <a href = "{% url "dashboard" %}">My dashboard</a>
@@ -26,13 +27,26 @@
                 <a href = "#">People</a>
             </li>
         </ul>
+        {#        #}
     {% endif %}
 
     <span class = "user">
 
      {% if request.user.is_authenticated %}
          Hello {{ request.user.first_name|default:request.user.username }},
-         <a href = "{% url "logout" %}">Logout</a>
+         {#         <a href = "{% url "logout" %}">Logout</a>#}
+
+
+         <form action = "{% url 'logout' %}" method = "post">
+
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit">logout</button>
+
+        </form>
+
+
+
      {% else %}
          <a href = "{% url "login" %}">Log-in</a>
      {% endif %}
