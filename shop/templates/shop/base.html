@@ -3,22 +3,36 @@
 <html>
 
 <head>
-    <meta charset = "utf-8"/>
+    <meta charset="utf-8"/>
     <title>{% block title %}My shop{% endblock %}</title>
-    <link href = "{% static "css/base.css" %}" rel = "stylesheet">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
 </head>
 
 <body>
-<div id = "header">
-    <a href = "/" class = "logo">My shop</a>
+<div id="header">
+    <a href="/" class="logo">My shop</a>
 </div>
 
-<div id = "subheader">
-    <div class = "cart">
+<div id="subheader">
+{##}
+        <span class="user">
+         {% if request.user.is_authenticated %}
+             Hello {{ request.user.first_name|default:request.user.username }},
+             {#     <a href="{% url "logout" %}">Logout</a>#}
+             <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Log_Out</button>
+            </form>
+         {% else %}
+             <a href="{% url "login" %}">Log-in</a>
+         {% endif %}
+        </span>
+{##}
+    <div class="cart">
         {% with total_items=cart|length %}
             {% if total_items > 0 %}
                 Your cart:
-                <a href = "{% url "cart:cart_detail" %}">
+                <a href="{% url "cart:cart_detail" %}">
                     {{ total_items }} item{{ total_items|pluralize }},
                                       ${{ cart.get_total_price }}
                 </a>
@@ -31,7 +45,7 @@
 </div>
 
 {#    Контент   #}
-<div id = "content">
+<div id="content">
     {% block content %}
     {% endblock %}
 </div>
